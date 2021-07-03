@@ -123,27 +123,36 @@ export default {
         variants: {
             type: Array,
             required: true
+        },
+        products_details:{
+            type: Array,
+            required: true
         }
     },
     data() {
         return {
-            product_name: '',
-            product_sku: '',
-            description: '',
-            images: [],
+            product_name: this.products_details[0].title,
+            product_sku: this.products_details[0].sku,
+            description: this.products_details[0].description,
+            images: [
+                this.products_details[0].images
+            ],
             product_variant: [
                 {
                     option: this.variants[0].id,
                     tags: []
                 }
             ],
-            product_variant_prices: [],
+            product_variant_prices: [
+                this.products_details[0].product_prices
+            ],
             dropzoneOptions: {
                 url: 'https://httpbin.org/post',
                 thumbnailWidth: 150,
                 maxFilesize: 0.5,
                 headers: {"My-Awesome-Header": "header value"}
-            }
+            },
+
         }
     },
     methods: {
